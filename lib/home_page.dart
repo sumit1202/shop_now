@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_now/global_variables.dart';
+import 'package:shop_now/product_card.dart';
+import 'package:shop_now/product_details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,20 +37,16 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            const Row(
+            Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Text(
                     'Sneakers\nStore',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                      color: Colors.deepPurple,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Search',
@@ -71,7 +70,9 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: GestureDetector(
                       onTap: () {
-                        selectedFilter = filterIndex;
+                        setState(() {
+                          selectedFilter = filterIndex;
+                        });
                       },
                       child: Chip(
                         label: Text(filterIndex),
@@ -95,6 +96,32 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: ListView.builder(
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      final productItem = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsPage(product: productItem);
+                              },
+                            ),
+                          );
+                        },
+                        child: ProductCard(
+                          title: productItem['title'] as String,
+                          price: productItem['price'] as double,
+                          image: productItem['imageUrl'] as String,
+                        ),
+                      );
+                    }),
+              ),
+            )
           ],
         ),
       ),

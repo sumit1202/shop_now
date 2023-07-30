@@ -12,8 +12,14 @@ class MyShopApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Shop Now',
+      title: 'Sneakers Store',
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+          ),
+        ),
         fontFamily: 'Lato',
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepPurple,
@@ -26,6 +32,18 @@ class MyShopApp extends StatelessWidget {
           ),
           prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
         ),
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 35,
+            color: Colors.deepPurple,
+          ),
+          titleMedium: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+        useMaterial3: true,
       ),
       home: const HomePage(),
     );

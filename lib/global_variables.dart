@@ -57,7 +57,7 @@ final cart = [
     'company': 'Puma',
     'title': "Puma Sneakers 01",
     'price': 4999.0,
-    'sizes': [5, 6, 7, 8, 9, 10, 11, 12, 13],
+    'size': 10,
     'imageUrl': 'assets/images/shoes_5.png',
   }
 ];

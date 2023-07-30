@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_now/global_variables.dart';
-import 'package:shop_now/product_card.dart';
-import 'package:shop_now/product_details_page.dart';
+import 'package:shop_now/cart_page.dart';
+import 'package:shop_now/product_list_home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,119 +10,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<String> filtersList = const ['All', 'Nike', 'Adidas', 'Puma'];
-
-  late String selectedFilter;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedFilter = filtersList[0];
-  }
+  int currentPage = 0;
+  List<Widget> pages = const [ProductListHome(), CartPage()];
 
   @override
   Widget build(BuildContext context) {
-    const myBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(50),
-        bottomLeft: Radius.circular(50),
-      ),
-      borderSide: BorderSide(
-        color: Color.fromRGBO(225, 225, 225, 1),
-      ),
-    );
-
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    'Sneakers\nStore',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-                const Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search',
-                      prefixIcon: Icon(Icons.search),
-                      border: myBorder,
-                      enabledBorder: myBorder,
-                      focusedBorder: myBorder,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 120,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: filtersList.length,
-                itemBuilder: (context, index) {
-                  final filterIndex = filtersList[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedFilter = filterIndex;
-                        });
-                      },
-                      child: Chip(
-                        label: Text(filterIndex),
-                        backgroundColor: selectedFilter == filterIndex
-                            ? Theme.of(context).colorScheme.inversePrimary
-                            : const Color.fromRGBO(245, 247, 249, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        side: const BorderSide(
-                          color: Color.fromRGBO(245, 247, 249, 1),
-                        ),
-                        labelStyle: const TextStyle(
-                          fontSize: 16,
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 15),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: ListView.builder(
-                    itemCount: products.length,
-                    itemBuilder: (context, index) {
-                      final productItem = products[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProductDetailsPage(product: productItem);
-                              },
-                            ),
-                          );
-                        },
-                        child: ProductCard(
-                          title: productItem['title'] as String,
-                          price: productItem['price'] as double,
-                          image: productItem['imageUrl'] as String,
-                        ),
-                      );
-                    }),
-              ),
-            )
-          ],
-        ),
+      body: IndexedStack(
+        index: currentPage,
+        children: pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentPage,
+        onTap: (value) {
+          setState(() {
+            currentPage = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Cart',
+          ),
+        ],
       ),
     );
   }

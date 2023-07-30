@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_now/global_variables.dart';
-import 'package:shop_now/product_card.dart';
-import 'package:shop_now/product_details_page.dart';
+import 'package:shop_now/widgets/product_card.dart';
+import 'package:shop_now/pages/product_details_page.dart';
 
 class ProductListHome extends StatefulWidget {
   const ProductListHome({super.key});

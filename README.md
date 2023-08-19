@@ -5,13 +5,6 @@ The app runs on all platforms: Android, ios, macOS, windows, chrome, and other b
 
 ## Screenshots below(on ios):
 
-![Simulator Screenshot - iPhone 14 Pro Max - 2023-07-31 at 00 10 01](https://github.com/sumit1202/shop_now/assets/31153960/80abbe2d-7afb-4fe3-babc-c68626266a57)
+![1](https://github.com/sumit1202/shop_now/assets/31153960/b091fa16-f9dd-41b6-8ab6-388c6f16b01e)
 
-
-![Simulator Screenshot - iPhone 14 Pro Max - 2023-07-31 at 00 10 38](https://github.com/sumit1202/shop_now/assets/31153960/4211cbb1-2d78-4d51-936f-b2359b88e8e0)
-
-
-![Simulator Screenshot - iPhone 14 Pro Max - 2023-07-31 at 00 11 18](https://github.com/sumit1202/shop_now/assets/31153960/d6b592e6-961f-4857-b3b8-fc41909a5000)
-
-
-![Simulator Screenshot - iPhone 14 Pro Max - 2023-07-31 at 00 11 33](https://github.com/sumit1202/shop_now/assets/31153960/fc798568-bb14-475f-9b01-33a8fe33597f)
+![2](https://github.com/sumit1202/shop_now/assets/31153960/efc04a79-1223-41eb-bf3b-0da43fbba320)
